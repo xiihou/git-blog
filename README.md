@@ -1,7 +1,7 @@
 # xiihou的笔记
 * [mysql](mysql.md)
 * [mongodb](mongodb.md)
-* [redis](mysql.md)
+* [redis](redis.md)
 * [python](mysql.md)
 * [ES](mysql.md)
 * [JS](mysql.md)
