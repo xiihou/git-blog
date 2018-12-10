@@ -1,6 +1,6 @@
 # xiihou的笔记
 * [mysql](mysql.md)
-* [mongodb](mysql.md)
+* [mongodb](mongodb.md)
 * [redis](mysql.md)
 * [python](mysql.md)
 * [ES](mysql.md)
