@@ -14,7 +14,3 @@
 <br>
 * [妹子图](https://github.com/xiihou/git-blog/blob/master/meizitu.py)
 <br>
-···
-
-···
-
