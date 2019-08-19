@@ -19,6 +19,6 @@
 * [妹子图](https://github.com/xiihou/git-blog/blob/master/meizitu.py)
 
 ## 抖音直播机器人
-    在直播的时候，用另外的手机进入到自己的直播，可以代替一些需要人的操作，欢迎进来的人，感谢赠送礼物的人，感谢分享的人。<br>
-    代码用uiautomator2实现，功能比较单一，需要其他功能可以添加！~~~
-    点击查看： [douyin_robot.py](https://github.com/xiihou/git-blog/tree/master/job_51)
+在直播的时候，用另外的手机进入到自己的直播，可以代替一些需要人的操作，欢迎进来的人，感谢赠送礼物的人，感谢分享的人。<br>
+代码用uiautomator2实现，功能比较单一，需要其他功能可以添加！~~~>>>[douyin_robot.py](https://github.com/xiihou/git-blog/blob/master/uiautomator/douyin_robot.py)
+
