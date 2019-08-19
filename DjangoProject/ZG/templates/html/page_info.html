@@ -1,0 +1,216 @@
+
+
+
+
+<!doctype html>
+<html class="no-js">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>挂起赚</title>
+
+    <link rel="stylesheet" href="../../static/tuguan/css/index.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/css/amazeui.flat.min.css">
+    <link rel="stylesheet" href="../../static/tuguan/css/public.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/page/jquery.pagination.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<header>
+    <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span class="sr-only">挂起赚</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">挂起赚</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/logindy/">抖音托管</a></li>
+			<li ><a href="/douyintixian/">抖音提现</a></li>
+			<li><a href="/downperson/">下线</a></li>
+			<li class="active"><a href="/pageinfo/">个人中心</a></li>
+			<li class="dropdown">
+				<ul class="dropdown-menu">
+					<li><a href="/logindy/">抖音托管</a></li>
+					<li><a href="/douyintixian/">抖音提现</a></li>
+					<li><a href="/downperson/">下线</a></li>
+					<li class="active"><a href="/pageinfo/">个人中心</a></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+    </div>
+
+
+<body>
+
+
+	<!--news-->
+	<div class="am-g am-container newatype">
+		<div class="am-u-sm-12 am-u-md-12 am-u-lg-12 oh">
+			<div data-am-widget="titlebar"
+				class="am-titlebar am-titlebar-default"
+				style="border-bottom: 0px; margin-bottom: -10px">
+				<h2 class="am-titlebar-title ">平台基本信息</h2>
+			</div>
+
+			<div data-am-widget="list_news"
+				class="am-list-news am-list-news-default news">
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+						<li
+							class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left"
+							data-am-scrollspy="{animation:'fade'}">
+							<div class="am-u-sm-12 am-list-thumb">
+								<ul>
+									<li>需要更改支付宝账号的请联系网站管理员,QQ:295658780</li>
+									<!-- <li><a href="">http://58huluwa.com/</a></li> -->
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div data-am-widget="titlebar"
+					class="am-titlebar am-titlebar-default">
+					<h2 class="am-titlebar-title ">用户基本信息</h2>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+						<li
+							class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left"
+							data-am-scrollspy="{animation:'fade'}">
+							<table class="am-table am-table-bordered">
+								<tr>
+									<td class="basainfotd">您的账号：</td>
+									<td>{{ user }}</td>
+								</tr>
+								<tr>
+									<td>支付宝账户：</td>
+                                    {% if pay_user %}
+                                    <td>{{ pay_user }}</td>
+                                    {% else %}
+                                    <td>
+										<a href="/set_pay/" target="_Blank"><button >绑定支付宝</button></a>
+									</td>
+                                    {% endif %}
+								</tr>
+								<tr>
+									<td>真实姓名</td>
+									<td>{{ name }}</td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</div>
+
+				<div data-am-widget="titlebar"
+					class="am-titlebar am-titlebar-default">
+					<h2 class="am-titlebar-title ">推广信息</h2>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+						<li
+							class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left"
+							data-am-scrollspy="{animation:'fade'}">
+							<div class="am-u-sm-12 am-list-thumb">
+								<ol>
+									<li>您的推广码：{{ user }}</li>
+									<li>您的推荐网址 (用来推广下线使用):<br />http://127.0.0.1:8000/share/?key={{ user }}
+									 </li>
+								</ol>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="回到顶部">
+        <span class="am-gotop-title">回到顶部</span>
+        <i class="am-gotop-icon am-icon-chevron-up"></i>
+    </a>
+</div>
+<!-- <div class="gzhcode">
+    <a class="aover">
+        <div class="pic">
+            <img src="webpage/tuguan/images/weixin.png" width="160">
+        </div>
+    </a>
+</div> -->
+<div style="text-align: center;">Copyright ©2013-2019</div>
+
+
+	<div id="wDetail"  style="width:1px; height:1px; margin:0px; padding:0px;">
+        <iframe name="login" frameborder="0" marginheight="0"
+            marginwidth="0" height="90%" width="100%" scrolling="auto"
+            src="about:blank"></iframe>
+    </div>
+</body>
+
+<script type="text/javascript">
+	initDetailDialog();
+
+
+/**初始化查看弹框*/
+function initDetailDialog() {
+	var width = $(window).width() * 0.45;
+	var height = $(window).height() * 0.55;
+	$('#wDetail').dialog({
+		width : width,
+		height : height,
+		minWidth : 450,
+		minHeight : 600,
+		autoOpen : false,
+		modal : true,
+		resizable : true,
+		title : '绑定支付宝'
+	});
+	$('#login').dialog({
+		width : 450,
+		height : 400,
+		minWidth : 450,
+		minHeight : 400,
+		autoOpen : false,
+		modal : true,
+		resizable : false,
+		title : '登录'
+	});
+}
+/**管理员弹出框*/
+function openAlipay(){
+	var url = "pageController.do?alipay";
+    $('#wDetail').find('iframe').attr('src', url);
+    $('#wDetail').dialog('open');
+}
+
+function closed(){
+	$('#wDetail').dialog('close');
+	window.location.reload();
+}
+</script>
+</html>

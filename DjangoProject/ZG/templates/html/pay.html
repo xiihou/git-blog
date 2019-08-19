@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html class="no-js">
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../static/tuguan/css/index.css">
+<link rel="stylesheet" href="../../static/tuguan/css/public.css">
+<link rel="stylesheet"
+	href="../../static/tuguan/assets/jquery-ui/jquery-ui.css">
+<link rel="stylesheet"
+	href="../../static/tuguan/assets/page/jquery.pagination.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+<body>
+<div class="container" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:1px;">
+	<form action="/set_pay/" method="post" id="pay_form" class="am-form">
+        {% csrf_token %}
+		<table class="am-table am-table-bordered">
+			<tbody>
+				<tr>
+					<th rowspan="2">真实姓名</th>
+					<td><input type="text" id="realname" name="name" placeholder="真实姓名"
+						style="width:288px;" class="input-text radius" value=""></td>
+				</tr>
+				<tr>
+					<td>必须添写支付宝实名认证的姓名</td>
+				</tr>
+				<tr>
+					<th rowspan="2">支付宝账号</th>
+					<td><input type="text" id="aliAccount" name="pay_user" placeholder="支付宝账号"
+						style="width:288px;" class="input-text radius" value=""></td>
+				</tr>
+				<tr>
+					<td>必须添写真实支付宝账号，提现时佣金将打入这个账户。</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center">
+						<button id="pay_btn" class="am-btn am-btn-success" type="submit">确认</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+    {% if message %}
+        <script>
+                alert('{{ message }}');
+        </script>
+    {% endif %}
+</div>
+</body>
+</html>
+
+

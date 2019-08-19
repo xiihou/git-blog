@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>赚钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../static/css/auth.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+
+<div class="container-fluid">
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <p>会员登录</p>
+        <div >
+            <label>账号 <a href="#" >登录?</a></label>
+            <input type="text" name="username" class="form-control">
+        </div>
+        <div >
+            <label>密码 <a href="#" >忘记密码?</a></label>
+            <input type="password" name="password" autocomplete="current-password" class="form-control">
+        </div>
+        <button  type="submit">
+            登录
+        </button>
+
+        <div class="text-foot">
+            还没有账号? <a href="" >注册</a>
+        </div>
+    </form>
+</div>
+</body>
+
+
+
+
+
+

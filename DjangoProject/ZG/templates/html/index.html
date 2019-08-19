@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZG</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">宙古科技</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">查看系统需要登录权限，请登录</div>
+                <!--<p>查看系统需要登录权限，请登录</p>-->
+                <button id="register-btn" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span>注册
+                </button>
+                <button id="login-btn" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>登录</button>
+            </div>
+            <div id="context" class="panel panel-default">
+                <div class="panel-heading"> 任务介绍</div>
+                <!--<p>查看系统需要登录权限，请登录</p>-->
+                <ul class="list-group">
+                    <li class="list-group-item">您可以在个人中心中分享你的注册链接，下线做的任务，您都会有10%的提成。</li>
+                    <li class="list-group-item">您的二级、三级下线做的任务，您都会有3%、2%的奖励提成。</li>
+                    <li class="list-group-item">下线首次提现，会奖励3元到您的账户。邀请您的家人、朋友同学发展成为下线</li>
+                    <li class="list-group-item">推广小技巧:分享3个QQ/微信群，带上你收益截图，成功率200%</li>
+                </ul>
+            </div>
+            <div id="login" hidden="true" class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">用户登录</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" id="login-form" action="/login/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input id="login-username" type="text" class="form-control" name="username"
+                                       placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input id="login-passwd" type="text" class="form-control" name="passwd"
+                                       placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">登录</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="register" hidden="true" class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">用户注册</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="regiter-form" action="/regiter/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input id="regiter-username" type="text" class="form-control" name="username"
+                                       placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input id="regiter-passwd" type="password" class="form-control" name="passwd"
+                                       placeholder="请输入密码,不少于6位">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">重复密码</label>
+                            <div class="col-sm-10">
+                                <input id="regiter-passwdauth" type="password" class="form-control" name="passwdauth"
+                                       placeholder="请输入密码,不少于6位">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邀请码</label>
+                            <div class="col-sm-10">
+                                <input id="regiter-invitation" type="text" class="form-control" name="invitation"
+                                       placeholder="请输入邀请码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">注册</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">重要提示</div>
+                <div class="panel-body">
+                    扫码登陆到IPAD如果有掉线的，请点击头像下面的62登录，输入密码后就不会再掉线，62这种登录方式不是IPAD登录，
+                    是手机登陆，手机登陆号不能保持同时两个手机在线，两个手机同时用会出现抢登录，个人常用号不建议用62方式登录，个人常用号只适合用扫码登陆到IPAD，小号才合适
+                </div>
+            </div>
+
+        </div>
+        {% if message %}
+        <script>
+                alert('{{ message }}');
+        </script>
+        {% endif %}
+
+    </div>
+</div>
+<!--hidden="true"-->
+<script>
+    $("#login-btn").on("click",function(){
+    $("#context").attr('hidden',true);
+    $("#login").attr('hidden',false);
+    $("#register").attr('hidden',true);
+    });
+    $("#register-btn").on("click",function(){
+    $("#context").attr('hidden',true);
+    $("#login").attr('hidden',true);
+    $("#register").attr('hidden',false);
+    });
+     $("#login-form").submit(function(e){
+    var username=$.trim($("#login-username").val());
+    var passwd=$.trim($("#login-passwd").val());
+    if (username==''){
+        e.preventDefault();
+        alert("请输入用户名");
+    }else if (passwd==''){
+        e.preventDefault();
+        alert("请输入密码");
+    }});
+    $("#regiter-form").submit(function(e){
+    var regitername=$.trim($("#regiter-username").val());
+    var regiterpasswd=$.trim($("#regiter-passwd").val());
+    var regiterpasswdauth=$.trim($("#regiter-passwdauth").val());
+    var regiterinvitation=$.trim($("#regiter-invitation").val());
+    if (regitername==''){
+        e.preventDefault();
+        alert("请输入用户名");
+    }else if (regiterpasswd==''){
+        e.preventDefault();
+        alert("请输入密码");
+    }else if (regiterpasswd!=regiterpasswdauth){
+        e.preventDefault();
+        alert("两次密码不一致");
+    }else if (regiterinvitation==''){
+        e.preventDefault();
+        alert("请输入邀请码");
+    }else if (regiterpasswd.length<6){
+        e.preventDefault();
+        alert("密码不少于6位");
+    }
+    });
+
+</script>
+</body>
+
+</html>

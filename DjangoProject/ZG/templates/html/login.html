@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>挂起赚</title>
+	<link rel="stylesheet" href="../../static/css/auth.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style>
+		/*修改提示文字的颜色*/
+		input::-webkit-input-placeholder { /* WebKit browsers */
+		color: #999;
+		}
+		input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: #999;
+		}
+		input::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: #999;
+		}
+		input:-ms-input-placeholder { /* Internet Explorer 10+ */
+		color: #999;
+		}
+		</style>
+	<style>
+		.mui-content{
+
+				background: url(../../static/img/timg.jpg) bottom center no-repeat #efeff4 ;
+
+				background-size: 100% 100%;
+
+				width: 100%;
+
+				height: 100%;
+
+			}
+	</style>
+
+</head>
+
+<body class="mui-content">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="lowin lowin-red">
+				<div class="lowin-wrapper">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h2 class="panel-title">公告栏</h2>
+						</div>
+						<div class="panel-body">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">代理招聘</h3>
+								</div>
+								<div class="panel-body">
+									平台对外承接抖音刷赞，刷关注，刷评论的订单，欢迎洽谈合作!
+								</div>
+							</div>
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<h3 class="panel-title">平台介绍</h3>
+								</div>
+								<div class="panel-body">
+									注册挂起赚授权抖音账号给平台，平台用于给客户点赞、关注、 评论等操作，您拿佣金，可以说一次托管，永久收益
+								</div>
+							</div>
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									<h3 class="panel-title">收益说明</h3>
+								</div>
+								<div class="panel-body">
+									邀请奖励：邀请好友在线托管账号成功，即可获得1元邀请奖金佣金：从邀请的好友账号收入里拿到30%的佣金
+								</div>
+							</div>
+							<div class="panel panel-warning">
+								<div class="panel-heading">
+									<h3 class="panel-title">声明</h3>
+								</div>
+								<div class="panel-body">
+									平台不会泄露您的任何相关信息，且不会进行任何违法违规的操作
+								</div>
+							</div>
+							<div class="panel panel-danger">
+								<div class="panel-heading">
+									<h3 class="panel-title">规则</h3>
+								</div>
+								<div class="panel-body">
+									一个账号只能绑定一个支付宝账号，最低一元即可提现！新注册的抖音账号请先在手机上面活跃账号，再来提交避免封号危险！
+								</div>
+							</div>
+
+							<!--<p>平台介绍：注册挂起赚授权抖音账号给平台，平台用于给客户点赞、关注、 评论等操作，您拿佣金，可以说一次托管，永久收益</p>-->
+							<!--<p>收益说明：邀请奖励：邀请好友在线托管账号成功，即可获得1元邀请奖金佣金：从邀请的好友账号收入里拿到30%的佣金</p>-->
+							<!--<p>代理招聘：平台对外承接抖音刷赞，刷关注，刷评论的订单，欢迎洽谈合作</p>-->
+							<!--<p>声明：平台不会泄露您的任何相关信息，且不会进行任何违法违规的操作</p>-->
+							<!--<p>规则：一个账号只能绑定一个支付宝账号，最低一元即可提现！新注册的抖音账号请先在手机上面活跃账号，再来提交避免封号危险！</p>-->
+						</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="lowin lowin-red">
+				<div class="lowin-brand">
+					<!--<img src="kodinger.jpg" alt="logo">-->
+				</div>
+
+				<div class="lowin-wrapper">
+					<div class="lowin-box lowin-login">
+						<div class="lowin-box-inner">
+
+							<form action="/login/" method="post">
+								{% csrf_token %}
+								<p>会员登录</p>
+								<div class="lowin-group">
+									<label>账号 <a href="#" class="login-back-link">登录?</a></label>
+									<input type="text" name="user" class="lowin-input" id="user">
+								</div>
+								<div class="lowin-group password-group">
+									<label>密码 <a href="/forgot/" class="forgot-link">忘记密码?</a></label>
+									<input type="password" id="password" name="pwd" autocomplete="current-password" class="lowin-input">
+								</div>
+								<button class="lowin-btn" type="submit" id="submit">
+									登录
+								</button>
+
+								<div class="text-foot">
+									还没有账号? <a href="" class="register-link">注册</a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="lowin-box lowin-register">
+						<div class="lowin-box-inner">
+							<form method="post" action="/register/">
+								{% csrf_token %}
+								<p>创建新的账号</p>
+								<div class="lowin-group">
+									<label>账号</label>
+									<input type="text" name="user" class="lowin-input" placeholder="请输入手机号">
+								</div>
+								<div class="lowin-group">
+									<label>邀请码</label>
+									<input type="text"  name="invitation" class="lowin-input" id="invitation">
+									<p>获取邀请码联系客服QQ:295658780</p>
+								</div>
+								<div class="lowin-group">
+									<label>密码</label>
+									<input type="password" name="pwd" autocomplete="current-password" class="lowin-input" placeholder="密码不少于6位">
+								</div>
+								<button class="lowin-btn" type="submit">
+									注册
+								</button>
+
+								<div class="text-foot">
+									已经有账号? <a href="" class="login-link">登录</a>
+								</div>
+							</form>
+								{% if message %}
+									<script>
+											alert('{{ message }}');
+									</script>
+								{% endif %}
+								{% if invitation %}
+									<script>
+											var input=document.getElementById('invitation');
+											input.value={{ invitation }};
+									</script>
+								{% endif %}
+						</div>
+					</div>
+				</div>
+
+				<footer class="lowin-footer"> <a href="#" target="_blank" title=""></a> - Collect from <a href="#" title="" target="_blank"></a></footer>
+			</div>
+			<script src="../../static/js/auth.js"></script>
+			<script>
+				Auth.init({
+					login_url: '/login/',
+					forgot_url: '/forgot/'
+				});
+			</script>
+			<script>
+				var user=document.getElementById('user');
+				var pwd=document.getElementById('pwd');
+			</script>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZG</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">宙古科技</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">宙古科技</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="/login/">抖音托管</a></li>
+                    <li><a href="/douyintixian/">抖音提现</a></li>
+                    <li class="active"><a href="/douyintixian/">挂机账号管理</a></li>
+                    <li><a href="/downperson/">下线</a></li>
+                    <li><a href="/pageinfo/">个人中心</a></li>
+                    <li class="dropdown">
+                        <ul class="dropdown-menu">
+                            <li><a href="/login/">抖音托管</a></li>
+                            <li><a href="/douyintixian/">抖音提现</a></li>
+                            <li class="active"><a href="/douyintixian/">挂机账号管理</a></li>
+                            <li><a href="/downperson/">下线</a></li>
+                            <li><a href="/pageinfo/">个人中心</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+              <th>账号</th>
+              <th>状态</th>
+              <th>更新时间</th>
+              <th>下号</th>
+            </tr>
+          </thead>
+
+    {% if data %}
+         <tbody>
+        {% for d in data %}
+            <tr>
+              <td>{{ d.d_account }}</td>
+              <td>{{ d.d_status }}</td>
+              <td>{{ d.d_updata_time }}</td>
+                <td><button class="btn btn-default" onclick="subInfo({{ d.id }})">下号</button></td>
+            </tr>
+        {% endfor %}
+         </tbody>
+    {% endif %}
+    </table>
+
+
+
+</div>
+<script>
+    function subInfo(id){
+        alert('下号成功');
+    }
+</script>
+</body>
+</html>
+
+

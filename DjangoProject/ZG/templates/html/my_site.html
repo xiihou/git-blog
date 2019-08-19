@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" id="my-table">
+        <h1>Sonia的购物清单列表 <small>清单总数<span style="background:#000; color:#FFF">{{list1.length}}</span></small> <small>采购总数<span style="background:#000; color:#FFF">{{list1.length}}</span></small></h1>
+        <input ref="input1"><button @click='submit1'>添加</button>
+        <table class="table table-striped">
+            <thead>
+                    <tr>
+                        <th>名字</th>
+                        <th>以采购</th>
+                        <th>状态</th>
+                    </tr>
+            </thead>
+            <tbody>
+            <tr  v-for="(value, key) in list1">
+                <td>{{key}}</td>
+                <td><input type="checkbox" defaultChecked={{value}} @click="updata($event)" data-name={{key}}></td>
+                <td>{{value}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+<script>
+new Vue({
+  el: '#my-table',
+  data: {
+      list1:{},
+  },
+	methods:{
+        submit1:
+            function(e){
+                var name=this.$refs.input1.value
+                console.log(name)
+                if (name==''){
+                    return false
+                }else{
+                    this.$set(this.list1, name, false)
+                    console.log(this.list1)
+                }
+            },
+        updata:function(event){
+            var el=event.currentTarget;
+            var name=el.getAttribute('data-name')
+            flag=el.Checked;
+            this.$set(this.list1, name, flag)
+        }
+        
+	}
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+//分页js代码 start
+var total = 100;//首次初始化共有total项数据
+var page_old = 0;//首次初始化选择第page_old页
+var pageNo = 1;//首次初始化获取第pageNo页
+var pageSize = 12; //每页大小
+
+var sec = 30;                  //设置倒计时时间为30秒
+$(function() {
+	//用户不显示
+	$(".admin").attr("style", "display:none");
+	initDetailDialog();
+	
+	if($("#isLogin").val()==1){		
+		getdataTotal();
+		getdata(pageNo);
+		$("#pro_intro").hide();
+	}else{
+		$("#list_wx").hide();
+	}
+	$("#loadqrcode").hide();
+	$("#qrcode-footer").hide();
+	
+	hileLimitButton();
+});
+/** 查询数据*/
+function getdata(pageNo) {
+	//setQuery(querydata)
+	$.ajax({
+		url : "/tuguan/userapi/weixin/list.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		data : {
+	            "page":pageNo,
+				"size":pageSize,
+				"userId":$("#suser_id").val(),
+			},
+		success : function(json) {
+			bindData(json);
+		},
+		error : function() {
+			alert("请求错误");
+		}
+	});
+}
+/** 查询数据总数*/
+function getdataTotal() {
+	$.ajax({
+		url : "/tuguan/userapi/weixin/count.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		success : function(json) {
+			total=json.count;
+			initPagination();
+		},
+		error : function() {
+			alert("请求错误");
+		}
+	});
+}
+
+
+
+
+/** 点击后，触发生产二维码*/
+function getcode(id) {
+	
+	$("#codeButton").attr('disabled',"true");
+	$("#loadqrcode").show();
+	setTimeout(getqrcode,2000);
+}
+//确认登录
+var qrdl = 0;
+var xiaohao_id = 0;
+var countdown=100;
+var tuanguani=0;
+//获取二维码10次
+var getqrurl=5;
+/**
+ * 从后台获取二维码
+ */
+function getqrcode(){
+	if(qrdl==1){
+		return false;
+	}
+	$.ajax({
+		url : "/tuguan/userapi/weixin/code.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		data:{
+			"xiaohao_id":xiaohao_id,
+			"action":"qrcode",
+		},
+		success : function(json){
+			if(json.code==0){	
+				$("#loadqrcode").hide();
+//				$("#qrcode-footer").show();
+				$("#loign_qrcode").show();
+				$("#qrcode_time").show();
+				$('#loign_qrcode').html('').qrcode(json.data.login_qrcode);
+				$("#qrcode_time").html("二维码预计<span style=\"color: red\">"+ countdown + "</span>秒后失效");
+				$("#codeId").val(json.id);
+				$('#codeButton').removeAttr("disabled");
+				if(countdown==0){
+					$("#qrcode-footer").hide();
+					$('#loign_qrcode').hide();
+					$("#qrcode_time").hide();
+					countdown=100;
+					return false;
+				}
+				//自动托管
+				if(json.data.loginType==1){
+					$("#loign_qrcode").hide();
+					$("#qrcode_time").hide();
+					$("#qrcode_tip").hide();
+//					$("#qrcode-footer").hide();
+					getdataTotal();
+					getdata(pageNo);
+					
+					
+					
+					layer.open({
+						title:'提示信息',
+						//offset:'rb',
+						content:'托管成功',
+						time:3000,
+						btn:false,
+						shade:false,
+						icon:1,
+						shift:2
+					});
+					xiaohao_id = 0;
+					countdown=100;
+					$("#codeButton").attr('disabled',"true");
+					$("#loadqrcode").show();
+					setTimeout(getqrcode,2000);
+					return false;
+				}
+				
+				xiaohao_id = json.data.id;
+				countdown=countdown-2;
+				setTimeout(getqrcode,2000);
+			}else if(json.code==1){
+				/*getqrurl--;
+				if(getqrurl<=0){
+					$("#loadqrcode").hide();
+					$('#codeButton').removeAttr("disabled");
+					alert("暂时没有二维码，请休息两分钟再获取");
+					getqrurl=5;
+					return false;
+				}*/
+				setTimeout(getqrcode,5000);
+			}
+		},
+		error : function() {
+			
+		}
+	});
+}
+
+/**
+ * 确认托管
+ */
+function qrdlcommit(){
+	if(xiaohao_id == 0){
+        alert("等待二维码生成！！");
+        return false;
+	}
+	qrdl=1;
+	$('#qrcode_tip').html('授权验证中，请稍等……');
+    $('#qrcode_loading').show();
+	$.ajax({
+		url : "/tuguan/userapi/weixin/code.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		data : {
+            "xiaohao_id":xiaohao_id,
+            "action":"tuoguan"
+		},
+		success : function(json) {
+			if(json.code==0){//成功
+				
+				$("#loign_qrcode").hide();
+				$("#qrcode_time").hide();
+				$("#qrcode_tip").hide();
+				$("#qrcode-footer").hide();
+				getdataTotal();
+				getdata(pageNo);
+			}else{//失败
+				 tuanguani++;
+                 if(tuanguani>5){
+                     $('#qrcode_tip').html('没登陆成功，请重试。');
+                     $('#qrcode_loading').hide();
+                     tuanguani = 0;
+                     return false;
+					}
+                 setTimeout(function () {
+                     $("#apply_hosting").click();
+                 },10000)
+			}
+		},
+		error : function() {
+			alert("托管失败");
+		}
+	});
+}
+
+/**
+ * 设置属性
+ */
+function setInfo(id){
+	var url = "login.html";
+    $('#wDetail').find('iframe').attr('src', url);
+    $('#wDetail').dialog('open');
+	
+	$.ajax({
+		url : "/tuguan/userapi/weixin/commitLogin.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		data : {
+            "codeId":id,
+		},
+		success : function(json) {
+			if(json.code==1){//成功
+				clearInterval(timer); 
+				if($("#cmiSuceess").val()==0){
+					$("#cmiSuceess").val(1)
+					alert("托管成功");
+				}
+				$("#imgcode").hide();
+			}else{//失败
+				
+			}
+		},
+		error : function() {
+			alert("托管失败");
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+function bindData(data){
+	$('#weixinList').html('');
+	var html = [];
+	var templateData = $('#weixinListTemp').html();
+	var len = data.length;
+	for (var i = 0; i < len; i++) {
+		var o = data[i];
+		var tmp = templateData;
+		//tmp = tmp.replace(/\{xh\}/g, (pageNo - 1) * 10 + (i + 1));
+		tmp = tmp.replace(/\{id\}/g, o.id);
+		tmp = tmp.replace(/\{nickname\}/g, o.nickname);
+		tmp = tmp.replace(/\{headimg\}/g, o.headimg);
+		tmp = tmp.replace(/\{show\}/g, o.is_stop == true ? "none" : "inline");
+		tmp = tmp.replace(/\{hide\}/g, o.is_stop == true ? "inline" : "none");
+		//tmp = tmp.replace(/\{xhzw\}/g, o.xhzw != "" ? o.xhzw : "");
+		//var createTime = o.submitTime == null ? '&nbsp;' : new Date(o.submitTime.time).pattern("yyyy-MM-dd hh:mm:ss");
+		// tmp = tmp.replace(/\{submit_time\}/g, createTime);
+		html.push(tmp);
+	}
+	
+	var content = html.join('');
+	$('#weixinList').html(content);
+}
+
+/** 初始化分页*/
+function initPagination() {
+	$("#Pagination").pagination(total, {
+		num_edge_entries : 4, //边缘页数
+		num_display_entries : 4, //主体页数
+		current_page : page_old, //当前页
+		load_first_page : false,
+		callback : pageselectCallback,
+		items_per_page : 12, //每页显示1项
+		prev_text : "前一页",
+		next_text : "后一页"
+	});
+};
+
+function pageselectCallback(page_index, jq) {
+	if (page_index != page_old) {//点击改变页数
+		page_old = page_index;
+		//查询数据
+		getdata(page_index + 1);
+		pageNo = page_index + 1;
+	}
+	return false;
+}
+/**初始化查看弹框*/
+function initDetailDialog() {
+	var width = $(window).width() * 0.9;
+	var height = $(window).height() * 0.8;
+	$('#wDetail').dialog({
+		width : width,
+		height : height,
+		minWidth : 800,
+		minHeight : 600,
+		autoOpen : false,
+		modal : true,
+		resizable : true,
+		title : '会员详情'
+	});
+	
+}
+/**
+ * 二维码倒计时
+ */
+function countDown(id) {
+	
+	if(sec > 0) {
+		$("#codeTime").text(sec--);
+		if(sec%4==0){			
+			commitLogin(id);
+		}
+	} else {
+		$("#imgcode").html('<span>二维码已经过期，请重新点击获取二维码</span>');
+		clearInterval(timer); 
+		sec=30;
+    }
+}
+/**
+ * 清理在线微信号
+ */
+function clearwx(){
+	$.ajax({
+		url : "/tuguan/userapi/weixin/clearwx.do?ajax=" + Math.random(),
+		dataType : "json",
+		type : "post",
+		cache : false,
+		success : function(json) {
+			if(json.code=='000'){//成功
+				alert("清理成功");
+				getdataTotal();
+				getdata(pageNo);
+			}else{//失败
+				
+			}
+		},
+		error : function() {
+			alert("清理失败");
+		}
+	});
+}
+/**
+ * 查看在线微信号
+ */
+function showwx(){
+	window.open("/tuguan/userapi/weixin/showwx.do", "_blank");
+}
+/** 隐藏查看限制按钮*/
+function hileLimitButton(){
+	var now = new Date();
+	var start = new Date();
+	var start = new Date();
+	start.setHours("9");
+	start.setMinutes("0");
+	start.setSeconds("0");
+	var end = new Date();
+	end.setHours("12");
+	end.setMinutes("0");
+	end.setSeconds("0");
+	
+	var online=$("#wxonline").text();
+	if(now>=start&&now<=end&&online>=100){
+		$("#limitButton").show();
+	}
+}
+
+/**
+ * 查看在线微信号
+ */
+function showLimit(){
+	window.open("/tuguan/userapi/weixin/showLimit.do", "_blank");
+}
+/**
+ * 查看在线微信号
+ */
+function upload62(){
+	window.open("/tuguan/pageController.do?upload62", "_blank");
+}
+

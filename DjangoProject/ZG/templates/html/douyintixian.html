@@ -1,0 +1,209 @@
+
+
+
+
+
+<!doctype html>
+<html class="no-js">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>挂起赚</title>
+
+    <!--360 browser -->
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="wos">
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="webpage/tuguan/images/i/app.png">
+    <!--Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+    <link rel="stylesheet" href="../../static/tuguan/css/index.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/css/amazeui.flat.min.css">
+    <link rel="stylesheet" href="../../static/tuguan/css/public.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/page/jquery.pagination.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<header>
+    <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span class="sr-only">挂起赚</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">挂起赚</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/logindy/">抖音托管</a></li>
+			<li class="active"><a href="/douyintixian/">抖音提现</a></li>
+			<li><a href="/downperson/">下线</a></li>
+			<li><a href="/pageinfo/">个人中心</a></li>
+			<li class="dropdown">
+				<ul class="dropdown-menu">
+					<li><a href="/logindy/">抖音托管</a></li>
+					<li class="active"><a href="/douyintixian/">抖音提现</a></li>
+					<li><a href="/downperson/">下线</a></li>
+					<li><a href="/pageinfo/">个人中心</a></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+    </div>
+
+
+<body>
+
+<!--news-->
+<div class="am-g am-container newatype">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12 oh">
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+    <h2 class="am-titlebar-title ">
+        提现信息
+    </h2>
+</div>
+
+<div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+    <div class="am-list-news-bd">
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                <div class="am-u-sm-12 am-list-thumb">
+                    <ul>
+                        <li>累计已提现 ￥{{ tixian }}</li>
+                        <li>累计总金额 ￥{{ s_p }}</li>
+                        <li>邀请收益额 ￥{{ num }}</li>
+                        <li>任务收益额 ￥{{ task_num }}</li>
+                        <li>tip：次日 0 点后满1元可提现</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+        <h2 class="am-titlebar-title ">
+            提现操作
+        </h2>
+    </div>
+    <div class="am-list-news-bd">
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                <div class="am-u-sm-12 am-list-thumb" >
+                    <form action="/douyintixian/" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="num" placeholder="请输入提现金额,(整数)"/></br>
+                     <button type="submit" class="am-btn am-btn-primary am-radius">提现</button>
+                    <!-- <div>提现金额：<input id="money" name="" placeholder="" /></div> -->
+                    </form>
+                    {% if message %}
+							<script>
+									alert('{{ message }}');
+							</script>
+                    {% endif %}
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+        <h2 class="am-titlebar-title ">
+            提现列表
+        </h2>
+    </div>
+    <div class="am-list-news-bd">
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                <table class="am-table am-table-bordered">
+                    <thead>
+                        <tr style="background-color: #0e90d2">
+                            <td>序号</td>
+                            <td>提现金额</td>
+                            <td>订单状态</td>
+                            <td>创建时间</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                    {% if item_list %}
+                        {% for item in item_list %}
+                            <tr >
+                            {% for item_ in item %}
+                                <td>{{ item_ }}</td>
+                                 {% endfor %}
+                            </tr>
+                         {% endfor %}
+                    {% endif %}
+
+                </table>
+                <div id="Pagination" class="pagination" style="text-align: right;"></div><!-- 这里显示分页 -->
+            </li>
+        </ul>
+    </div>
+
+    <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+        <h2 class="am-titlebar-title ">
+            小贴士
+        </h2>
+    </div>
+    <div class="am-list-news-bd">
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                <div class="am-u-sm-12 am-list-thumb">
+                    <ol>
+                        <li>平台默认使用支付宝结算，实时到账。</li>
+                        <li>如未实时到账，请联系QQ群：295658780</li>
+                        <li>交易“异常”一般是因为“支付宝账号错误”或者“账号与姓名不一致”，如有“异常”请先检查支付设置，再联系QQ群加管理员：744370783</li>
+                        <li>如果某天微信内打不开本网站，请使用微信之外的任意浏览器即可正常打开页面——所以务必收藏好本站网址。</li>
+
+                    </ol>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="回到顶部">
+        <span class="am-gotop-title">回到顶部</span>
+        <i class="am-gotop-icon am-icon-chevron-up"></i>
+    </a>
+</div>
+<!-- <div class="gzhcode">
+    <a class="aover">
+        <div class="pic">
+            <img src="webpage/tuguan/images/weixin.png" width="160">
+        </div>
+    </a>
+</div> -->
+<div style="text-align: center;">Copyright ©2013-2019</div>
+
+</body>
+</html>

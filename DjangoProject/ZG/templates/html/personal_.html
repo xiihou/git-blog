@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZG</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">宙古科技</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">宙古科技</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/personal_/">抖音托管</a></li>
+                    <li><a href="/douyintixian/">抖音提现</a></li>
+                    <li><a href="/accounts/">挂机账号管理</a></li>
+                    <li><a href="/downperson/">下线</a></li>
+                    <li><a href="/pageinfo/">个人中心</a></li>
+                    <li class="dropdown">
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="/personal_/">抖音托管</a></li>
+                            <li><a href="/douyintixian/">抖音提现</a></li>
+                            <li><a href="/accounts/">挂机账号管理</a></li>
+                            <li><a href="/downperson/">下线</a></li>
+                            <li><a href="/pageinfo/">个人中心</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"> 任务介绍</div>
+                <!--<p>查看系统需要登录权限，请登录</p>-->
+                <form method="post" class="form-horizontal" id="login-douyin-form" action="#">
+                    <span><font color="#FF0000">温馨提示：新注册的抖音号，请完善昵称，头像，性别等信息，否则容易限制点赞跟关注，没有收益。</font></span>
+                    <br>
+                    <span>请填写自己的手机号码，在手机上退出抖音，然后用自己手机号获取验证码。但是不要登录。</span>
+                    <br>
+                    <span>将自己手机收到的登录验证码输入如下验证码输入框，点击“提交”。等待俩分钟左右。</span>
+                    <br>
+                    <div class="form-group">
+
+                        <label for="exampleInputName2" class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputName2" placeholder="注册抖音的手机号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName3" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputName3" placeholder="请填写自己的抖音密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName4" class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="exampleInputName4" placeholder="注册抖音的密码">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-10 col-sm-10">
+                            <button type="submit" class="btn btn-success" id="submit">提交</button>
+                        </div>
+                    </div>
+                    <!--style="display:none"-->
+                    <div id="waitLogin" style="display:none">
+                        <span>正在登录，大概需要150-200秒，请耐心等待
+                           <img style="height:50px;width:50px" src="../../static/tuguan/images/loading.gif">
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">重要提示</div>
+                <div class="panel-body">
+                    <div class="panel-heading"> 托管步骤</div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">第一步：如果您是手机注册的抖音，在手机上退出抖音，然后再用手机号登录获取登录验证码！</li>
+                        <li class="list-group-item">第二步：获取到登录验证码，不要在自己手机登录，将手机号跟验证码填写再指定位置，点击上号！</li>
+                        <li class="list-group-item">第三步：平台用您的DY账号做点赞跟关注任务，请勿在一个月内取消关注！平台会检测账号影响收益。</li>
+                    </ul>
+                </div>
+                <div class="panel-footer" align="right">加QQ群：295658780找管理员或者群主，了解任务详情！</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+$.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}'},});
+        $("#login-douyin-form").submit(function(e){
+                e.preventDefault();});
+        $("#submit").click(function(){
+            var phone=$.trim($("#exampleInputName2").val());
+            var password=$.trim($("#exampleInputName3").val());
+            var auth=$.trim($("#exampleInputName4").val());
+                if (phone==''){
+                    alert("请输入账号");
+                    return;
+                }else if (password==''){
+                    alert("请输入密码");
+                    return;
+                }else if (auth==''){
+                    alert("请输入验证码");
+                    return;
+                }else if (auth.length!=4){
+                    alert("验证码必须4位");
+                    return;};
+              htmlobj=$.ajax({url:"/api/logindy/",async:true,success:function(result){if (result.msg=="提交成功"){$("#waitLogin").css('display','block')};alert(result.msg);},
+              type:"POST",dataType:"json",data:{'phone':phone,'password':password,'auth':auth},error:function(XMLHttpRequest, textStatus, errorThrown){
+                     alert("提交失败");
+                },
+
+              });
+              });
+
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,263 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>挂起赚</title>
+
+    <!--360 browser -->
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="wos">
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!--Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+
+    <link rel="stylesheet" href="../../static/tuguan/css/index.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/css/amazeui.flat.min.css">
+    <link rel="stylesheet" href="../../static/tuguan/css/public.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="../../static/tuguan/assets/page/jquery.pagination.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<header>
+    <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span class="sr-only">挂起赚</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">挂起赚</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/logindy/">抖音托管</a></li>
+			<li><a href="/douyintixian/">抖音提现</a></li>
+			<li><a href="/downperson/">下线</a></li>
+			<li><a href="/pageinfo/">个人中心</a></li>
+			<li class="dropdown">
+				<ul class="dropdown-menu">
+					<li class="active"><a href="/logindy/">抖音托管</a></li>
+					<li><a href="/douyintixian/">抖音提现</a></li>
+					<li><a href="/downperson/">下线</a></li>
+					<li><a href="/pageinfo/">个人中心</a></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+    </div>
+
+    <!--<div class="am-container">-->
+        <!--<h1 class="am-topbar-brand">-->
+            <!--<a href="#">赚钱</a>-->
+        <!--</h1>-->
+
+        <!--<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-warning am-show-sm-only" data-parent="#collapse-head" >-->
+            <!--<span class="am-sr-only">导航切换</span>-->
+            <!--<span class="am-icon-bars"></span>-->
+        <!--</button>-->
+
+        <!--<div class="am-collapse am-topbar-collapse" id="collapse-head">-->
+            <!--<ul class="am-nav am-nav-pills am-topbar-nav">-->
+                <!--<li id="index"><a href="#">首页</a></li>-->
+
+                    <!--<li id="dyindex"><a href="pageController.do?dyindex">抖音托管</a></li>-->
+                    <!--<li id="dyjiesuan"><a href="pageController.do?dyjiesuan">抖音业绩</a></li>-->
+                    <!--<li id="dytixian"><a href="/douyintixian/">抖音提现</a></li>-->
+                    <!--<li id="xiaxian"><a href="pageController.do?xiaxian">下线</a></li>-->
+                    <!--<li class="am-dropdown" data-am-dropdown>-->
+
+                        <!--<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">-->
+                           		 <!--个人中心-->
+                            <!--<span class="am-icon-caret-down"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="am-dropdown-content">-->
+                            <!--<li><a href="pageController.do?baseinfo">资料</a></li>-->
+                            <!--<li><a href="pageController.do?changepwd">修改密码</a></li>-->
+                            <!--<li><a href="javascript:void(0)" onclick="logout()">退出登录</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+
+
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+</header>
+
+<body>
+
+<!--news-->
+<div class="am-g am-container newatype">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 oh">
+
+        <div id="list_wx" data-am-widget="list_wx" class="am-list-news am-list-news-default news">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+                <h2 class="am-titlebar-title ">托管</h2>
+            </div>
+            <div class="am-list-news-bd">
+                <ul class="am-list">
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                        <div class="am-u-sm-12">
+                           <form action="/logindy/" method="post">
+                               {% csrf_token %}
+                           <div><span><font color="#FF0000">温馨提示：新注册的抖音号，请完善昵称，头像，性别等信息，否则容易限制点赞跟关注，没有收益。</font></span></div>
+                           <div id="dyPhoneInput">
+                                <input type="text" name="phone" placeholder="请输入抖音手机号" id="phone"/></br>
+                                <span>请填写自己的手机号码，在手机上退出抖音，然后用自己手机号获取验证码。但是不要登录。</span></br>
+                                <span>将自己手机收到的登录验证码输入如下验证码输入框，点击“上号”。等待俩分钟左右。</span>
+                               <!--  <button type="button" id="uploadButton"
+                                    class="btn am-btn-success" onclick="uploadPhone()">上号</button> -->
+                           </div>
+                           <div id="uploadXh" style="display: none">
+                           		<span>正在出码，大概需要20到30秒，请耐心等待
+                           		   <img style="height:50px;width:50px" src="../../static/tuguan/images/loading.gif">
+                           		</span>
+                           </div>
+                           <div id="dyMsgInput">
+                                <input type="text" name="auth" placeholder="请输入抖音验证码" id="phoneMsg"/>
+                                <!-- <button type="button" id="uploadMsg"
+                                    class="btn am-btn-success" onclick="uploadMsg()">确认</button> -->
+                                <button type="submit" id="uploadButton"
+                                    class="btn am-btn-success">上号</button>
+                           </div>
+                           </form>
+                           <div id="waitLogin"  style="display: none">
+                           		<span>正在登录，大概需要150-200秒，请耐心等待
+                           		   <img style="height:50px;width:50px" src="../../static/tuguan/images/loading.gif">
+                           		</span>
+                           </div>
+                            {% if flag %}
+							<script>
+									var d=document.getElementById('waitLogin');
+									d.setAttribute('style','display:inline')
+							</script>
+                            {% endif %}
+
+						</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+                <h2 class="am-titlebar-title ">抖音列表</h2>
+            </div>
+            <div class="am-list-news-bd">
+                <ul class="am-list">
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                        <div class="am-u-sm-12">
+                            {% if data %}
+                            <input name="user" placeholder="{{ user }}" disabled="disabled">
+                            <input name="status" placeholder="{{ status }}" disabled="disabled">
+                            <a href="/delate/?user={{ user }}"><button class="am-btn am-btn-primary" >下号</button></a>
+                            {% endif %}
+                        	<!--<div>-->
+                        		<!--<button class="am-btn am-btn-primary" >清理已掉线抖音号</button>-->
+                        		<!--<button class="am-btn am-btn-primary" >查看在线抖音号</button>-->
+                        		<!--<button class="am-btn am-btn-info" >查看抖音号统计</button>-->
+
+                        	<!--</div>-->
+                        	<!--<div id="dystat" style="display:none">-->
+                        		<!--<p>当前托管抖音总数：<span id ="tgtotal"></span></p>-->
+                        		<!--<p>当前在线抖音总数：<span id="onlinetotal"></span></p>-->
+                        	<!--</div>-->
+                        	<!--<span></span>-->
+	                        <!--<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2-->
+	                             <!--am-avg-md-3 am-avg-lg-6 am-gallery-default-->
+	                             <!--am_index_addimglist am-no-layout" id="douyinList">-->
+	                        <!--</ul>-->
+
+                        </div>
+                    </li>
+                </ul>
+               <div id="Pagination" class="pagination" style="text-align: right;">
+                   <!-- 这里显示分页 -->
+               </div>
+               <div id="hiddenresult" style="display:none"></div>
+            </div>
+        </div>
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+            <h2 class="am-titlebar-title ">  任务介绍</h2>
+        </div>
+        <div class="am-list-news-bd">
+            <ul class="am-list">
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                    <div class="am-u-sm-12 am-list-thumb">
+                        <ul>
+                            <li>通过手机号和验证码方式把您的抖音号托管到平台，平台使用您的小号点赞与关注等。</li>
+                            <li>无需担心账号安全问题。您的账号只是托管到其他设备登录，我们不会修改密码等操作。</li>
+                            <li>您可以在个人中心中分享你的注册链接，直接下线做任务，您会有10%的提成。</li>
+                            <li>系统会定期结算，满1元即可提现，方便快捷。</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 oh">
+
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+                <h2 class="am-titlebar-title ">托管步骤</h2>
+            </div>
+            <div class="am-list-news-bd">
+                <ul class="am-list">
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                        <div class="">
+                            <ol>
+                                 <li>第一步：如果您是手机注册的抖音，在手机上退出抖音，然后再用手机号登录获取登录验证码！</li>
+                                 <li>第二步：获取到登录验证码，不要在自己手机登录，将手机号跟验证码填写再指定位置，点击上号！</li>
+                                 <li>第三步：平台用您的DY账号做点赞跟关注任务，请勿在一个月内取消关注！平台会检测账号影响收益。</li>
+                                 <li>加QQ群：295658780找管理员或者群主，了解任务详情！</li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+						{% if message %}
+							<script>
+									alert('{{ message }}');
+							</script>
+						{% endif %}
+
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="回到顶部">
+        <span class="am-gotop-title">回到顶部</span>
+        <i class="am-gotop-icon am-icon-chevron-up"></i>
+    </a>
+</div>
+<!-- <div class="gzhcode">
+    <a class="aover">
+        <div class="pic">
+            <img src="webpage/tuguan/images/weixin.png" width="160">
+        </div>
+    </a>
+</div> -->
+<div style="text-align: center;">Copyright ©2013-2019</div>
+
+</body>
+</html>
+
+
