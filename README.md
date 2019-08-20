@@ -6,7 +6,7 @@
    * [ES](mysql.md)
    * [JS](mysql.md)
    * [hadoop](mysql.md)
-   * [scrapy](mysql.md)
+   * [scrapy](scrapy.md)
    * [linux](linux.md)
    * [uiautomator2](uiautomator2.md)<br>
 更新中...<br>
