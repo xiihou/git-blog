@@ -54,3 +54,206 @@
     font-size: 12px;
     color: #f22e00;
 }
+/* 头部搜索 */
+#headsearch{
+    background-color: #fff;
+    padding: 24px 0 10px 0;
+}
+#headsearch h1 a{
+    display: block;
+    width: 190px;
+    height: 58px;
+    background: url(../images/taobao.png) center no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+#headsearch .code{
+    width: 72px;
+    height: 86px;
+    border: 1px solid #eee;
+    position: relative;
+    margin-right: 110px;
+    text-align: center;
+
+}
+#headsearch .code img{
+    width: 62px;
+    height: 62px;
+}
+#headsearch .close{
+    position: absolute;
+    left: -16px;
+    top: -1px;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 14px;
+    border:  1px solid #eee;
+    color: #ddd;
+    cursor: pointer;
+
+}
+#headsearch .search{
+    width: 630px;
+    margin: 0 auto;
+}
+#headsearch .searchTab{
+    height: 22px;
+    padding-left: 17px;
+
+}
+
+#headsearch .searchTab li{
+    float: left;
+    width: 36px;
+    line-height: 22px;
+    margin-right: 4px;
+    text-align: center;
+    color: #f40;
+    cursor: pointer;
+}
+#headsearch .searchTab li:hover{
+    background-color: #ffeee5;
+}
+#headsearch .searchTab li.active{
+    color: #fff;
+    font-weight: bold;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+}
+
+#headsearch .searhContent{
+    height: 40px;
+}
+#headsearch .searchBox{
+    width: 554px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 2px solid #ff5000;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    overflow: hidden;
+    position: relative;
+}
+#headsearch .searchBox input{
+    width: 490px;
+    height: 36px;
+    line-height: 36px;
+    outline: none;
+    border: none;
+    text-indent: 10px;
+    position: absolute;
+    z-index: 1;
+    background-color: transparent; 
+}
+#headsearch .searchBox .placeholder{
+    position: absolute;
+    top: 6px;
+    left: 14px;
+}
+#headsearch .placeholder span{
+    color: #9c9c9c;
+    vertical-align: 1px;
+}
+#headsearch .imageSearch{
+    font-size: 28px;
+    position: absolute;
+    right: 20px;
+    color: #9c9c9c;
+    top: -3px;
+    cursor: pointer;
+}
+
+#headsearch button{
+
+    width: 74px;
+    height: 40px;
+    border: none;
+    margin-left: -7px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+    color: #fff;
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+    border-radius: 0 20px 20px 0;
+}
+#headsearch .hotKEY{
+    height: 25px;
+    line-height: 25px;
+}
+#headsearch .hotKEY a:hover{
+    color: #f50;
+}
+
+#nav{
+    height: 30px;
+    color: #eee;
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+}
+#nav .navTab{
+    width: 1200px;
+    height: 30px;
+    margin: 0 auto;
+}
+#nav li{
+    float: left;
+    line-height: 30px;
+    padding: 0 6px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#nav ul li:hover:before{
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 13px;
+    background-image: url(../images/tou.png);
+    top:-13px;
+    left: 50%;
+}
+
+#nav h2{
+    display: block;
+    width: 190px;
+    text-align: center;
+    font-size: 16px;
+    background: #ff5000;
+    line-height: 30px;
+}
+
+
+#content{
+    width: 1200px;
+    height: 521px;
+}
+#content ul{
+    box-sizing: border-box;
+    border: 1px solid #f22e00;
+    width: 190px;
+    height: 521px;
+}
+#content ul li{
+    padding-left: 25px;
+    padding-right: 19px;
+    width: 189px;
+    height: 32px;
+    overflow: hidden;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 145px;
+}
+
+#content ul li:hover{
+    background: #ffe4dc;
+    color: #f22e00;
+}
+#content ul li a{
+    cursor: pointer;
+}
+
+
